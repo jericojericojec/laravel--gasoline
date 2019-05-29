@@ -11,40 +11,40 @@
     <div class="container mb-md-5 pb-5">
         <div class="row mb-4">
             <div class="col-12 text-right">
-                    <a href="{{route('homepage')}}" class="btn btn-secondary mb-2 mb-lg-0 mr-lg-1 mr-0">Back</a>
-                <a href="{{route('export')}}" class="btn btn-primary mb-2 mb-lg-0">Export Transaction CSV</a>
+                <a href="{{route('homepage')}}" class="btn btn-secondary mb-2 mb-lg-0 mr-lg-1 mr-0">Back</a>
+                <a href="{{route('export')}}" class="btn btn-primary mb-2 mb-lg-0">Download Transaction CSV</a>
             </div>
         </div>
-
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Fuel Type</th>
-                    <th scope="col">Price per liter</th>
-                    <th scope="col">Purchase Amount</th>
-                    <th scope="col">VAT</th>
-                    <th scope="col">Total Amount</th>
-                    <th scope="col">Date of Transaction</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($transactions as $index => $transaction)
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <th scope="row">{{ucfirst($transaction->fuel_type)}}</th>
-                        <td>PHP {{$transaction->price_per_ltr}}</td>
-                        <td>PHP {{$transaction->purchase_amount}}</td>
-                        <td>PHP {{$transaction->vat}}</td>
-                        <td>PHP {{$transaction->total_amount}}</td>
-                        <td>{{date_format($transaction->created_at,"m/d/Y")}}</td>
+                        <th scope="col">Fuel Type</th>
+                        <th scope="col">Price per liter</th>
+                        <th scope="col">Purchase Amount</th>
+                        <th scope="col">VAT</th>
+                        <th scope="col">Total Amount</th>
+                        <th scope="col">Date of Transaction</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td class="text-center" colspan="6"><p>No data found</p></td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                    @forelse($transactions as $index => $transaction)
+                        <tr>
+                            <th scope="row">{{ucfirst($transaction->fuel_type)}}</th>
+                            <td>PHP {{$transaction->price_per_ltr}}</td>
+                            <td>PHP {{$transaction->purchase_amount}}</td>
+                            <td>PHP {{$transaction->vat}}</td>
+                            <td>PHP {{$transaction->total_amount}}</td>
+                            <td>{{date_format($transaction->created_at,"m/d/Y")}}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td class="text-center" colspan="6"><p>No data found</p></td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection
